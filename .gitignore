@@ -11,9 +11,22 @@ __pycache__/
 # VS Code settings
 .vscode/
 
-# OS generated files
+# Environment variables
+.env
+
+# Sensitive
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
 .DS_Store
 Thumbs.db
 
-# Environment variables
-.env
