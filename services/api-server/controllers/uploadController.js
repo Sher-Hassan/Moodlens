@@ -4,13 +4,7 @@ import AdmZip from 'adm-zip';
 import HealthRecord from '../models/HealthRecord.js';
 
 
-const mlEngineUrl = process.env.ML_ENGINE_URL || 'http://localhost:8000';
-        const streamForm = new FormData();
-        const xmlBlob = new Blob([xmlBuffer], { type: 'text/xml' });
 
-streamForm.append('file', xmlBlob, 'export.xml');
-
-console.log(`📤 Streaming XML payload directly to ML engine at: ${mlEngineUrl}/process-xml`);
 
 export const handleUpload = async (req, res) => {
     const { userId } = req.body;
