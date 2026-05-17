@@ -42,6 +42,7 @@ const allowedOrigins = [
     'http://localhost:5173',
     'http://192.168.100.92:5173',
     'http://172.24.16.1:5173',
+    'https://moodlens-gray.vercel.app',
     ...envOrigins,
 ];
 
