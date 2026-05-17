@@ -1,0 +1,107 @@
+[
+    {
+        "id": "import-apple-health",
+        "title": "How to import Apple Health data",
+        "category": "onboarding",
+        "tags": ["import", "apple health", "data", "ios", "iphone"],
+        "content": "To import your Apple Health data into MoodLens: 1) Open the Health app on your iPhone. 2) Tap your profile icon in the top-right. 3) Scroll down and tap 'Export All Health Data' — this creates a zip file with your full history. 4) When the export finishes, share the zip file to yourself (AirDrop, email, or cloud storage). 5) On the MoodLens import page, click 'Upload export.zip' and select the file. The import typically takes 1-3 minutes depending on history size. Your sleep, step, and energy data will be stored and used to power the Physical and Mental analyses."
+    },
+    {
+        "id": "shortcut-setup",
+        "title": "Setting up the Apple Health shortcut for automatic data sync",
+        "category": "onboarding",
+        "tags": ["shortcut", "automation", "sync", "apple health"],
+        "content": "For automatic daily syncing without manual exports, MoodLens supports the Apple Shortcuts app. Go to Settings → Shortcut Setup in MoodLens to get your personalized upload token, then follow the on-screen steps to install the shortcut. Once installed, your iPhone will quietly upload new sleep, step, and energy data each night. This is the recommended setup for ongoing use."
+    },
+    {
+        "id": "dass21-quiz",
+        "title": "About the DASS-21 mental health quiz",
+        "category": "feature",
+        "tags": ["dass-21", "quiz", "depression", "anxiety", "stress", "assessment"],
+        "content": "The DASS-21 (Depression, Anxiety, and Stress Scale) is a clinically validated 21-question self-report measure used worldwide in psychology research. In MoodLens, taking the quiz produces three scores: depression, anxiety, and stress, each on a 0-42 scale with severity labels (Normal, Mild, Moderate, Severe, Extremely Severe). It takes about 3 minutes. The quiz reflects how you've felt over the past week — it is NOT a clinical diagnosis. Take it from the Mental tab or your dashboard. You can retake it any time."
+    },
+    {
+        "id": "wellness-score-explained",
+        "title": "How the wellness score is computed",
+        "category": "feature",
+        "tags": ["wellness score", "scoring", "how it works"],
+        "content": "Your overall wellness score (0-100) blends your DASS-21 results with patterns in your sleep, steps, and energy data. For users with less than 14 days of data, we use rule-based formulas built on clinical thresholds. For users with 14+ days of data, we use an XGBoost machine learning model trained on the LifeSnaps dataset (real Fitbit + psychological assessment data from 71 users). The model learns your personal baseline and explains every prediction using SHAP, so you can see which behaviors are driving your score up or down."
+    },
+    {
+        "id": "shap-explained",
+        "title": "What SHAP explanations are",
+        "category": "feature",
+        "tags": ["shap", "explainability", "ai", "ml", "how it works"],
+        "content": "SHAP (SHapley Additive exPlanations) is a method for explaining individual machine-learning predictions. When MoodLens predicts your wellness score, SHAP tells us which features contributed how many points — for example, 'Your average sleep is lifting your score by 4.2 points' or 'Your sleep debt is pulling it down by 2.1 points.' This is what powers the 'Top drivers' shown in the AI Insights section. SHAP is real, transparent attribution — not invented numbers."
+    },
+    {
+        "id": "recovery-score-explained",
+        "title": "How the recovery score works",
+        "category": "feature",
+        "tags": ["recovery", "score", "sleep", "activity"],
+        "content": "The recovery score (0-100) measures how well your sleep is keeping pace with your activity. It combines a sleep component (max 60 points — optimal range is 7-9 hours) and an activity-fit component (max 40 points — rewards moderate activity, penalizes very inactive OR overtrained days). Score bands: 80+ Excellent, 60-79 Balanced, 40-59 Recovery needed, below 40 Fatigued. The chart shows this score for every day in your window."
+    },
+    {
+        "id": "recovery-radar-explained",
+        "title": "What the recovery radar's 5 axes mean",
+        "category": "feature",
+        "tags": ["radar", "recovery", "5 axes"],
+        "content": "The recovery radar shows five separate recovery dimensions, each scored 0-100: Sleep (duration vs ideal), Stress (lower DASS stress = higher score), Anxiety (lower DASS anxiety = higher score), Activity (within healthy step range), and Emotional balance (lower depression = higher score). A balanced pentagon means even recovery; a pinched spoke shows your weakest dimension. The FOCUS HERE callout names that weakest axis."
+    },
+    {
+        "id": "cluster-archetypes",
+        "title": "Behavioral archetypes — what they mean",
+        "category": "feature",
+        "tags": ["cluster", "archetype", "ml", "k-means"],
+        "content": "MoodLens uses K-Means clustering on the LifeSnaps training data to identify three behavioral archetypes: Active / Good sleeper / Low anxiety; Sedentary / Poor sleeper / Low anxiety; and Sedentary / Good sleeper / High anxiety. When the ML system runs, it assigns you to whichever archetype your patterns most resemble, with a match percentage. This powers more personalized recommendations — what works for one archetype may not work for another."
+    },
+    {
+        "id": "burnout-timeline-explained",
+        "title": "How the burnout timeline works",
+        "category": "feature",
+        "tags": ["burnout", "timeline", "risk", "exhaustion"],
+        "content": "The burnout timeline tracks a daily risk score by combining your DASS-21 stress and anxiety baselines with daily sleep deficit and activity load. The chart's background bands mark zones: 0-30 Healthy, 31-55 Mild Fatigue, 56-75 Burnout Risk, 76+ Severe. Sustained climbing into the higher zones is the warning signal worth watching — burnout is a pattern, not a single bad day."
+    },
+    {
+        "id": "anomaly-detection-explained",
+        "title": "Why some days are flagged as anomalies",
+        "category": "feature",
+        "tags": ["anomaly", "outlier", "isolation forest", "ml"],
+        "content": "MoodLens runs a per-user Isolation Forest model (a kind of unsupervised ML) once you have 14+ days of data. This model learns YOUR typical pattern across sleep, steps, and energy, then flags days that fall outside it. Unlike fixed thresholds (e.g., 'less than 5 hours sleep is bad'), this is personalized — a 6-hour night might be normal for one person and unusual for another. Anomaly days appear with a red flag on the relevant charts."
+    },
+    {
+        "id": "ai-summary-explained",
+        "title": "About the AI Coach summary feature",
+        "category": "feature",
+        "tags": ["ai summary", "coach", "gemini"],
+        "content": "The 'Your Physical/Mental Summary' section at the bottom of each tab is generated by Google's Gemini AI based on your specific data. The summary follows a wellness-coach format: what's working well, what needs attention, why it matters, and one concrete thing to try this week. It's regenerated every 6 hours or whenever you retake the quiz. This is for information only, not medical advice."
+    },
+    {
+        "id": "data-privacy",
+        "title": "Where your data is stored and who can see it",
+        "category": "privacy",
+        "tags": ["privacy", "data", "storage", "security"],
+        "content": "Your health data is stored in MoodLens's MongoDB database tied to your account. It is not shared with third parties. AI features send anonymized structured data (aggregates like 'average sleep 7.2h') to Google's Gemini API for generating summaries — no identifying information is sent. You can delete your account and all associated data at any time from Settings."
+    },
+    {
+        "id": "retake-quiz",
+        "title": "How to retake the DASS-21 quiz",
+        "category": "onboarding",
+        "tags": ["quiz", "retake", "dass-21"],
+        "content": "To retake the quiz: open the Mental tab. If you've already taken it, you'll see your results. There's a 'Retake quiz' button at the top of the results page. Your latest assessment is what powers the AI analyses, so retaking the quiz every few weeks gives you fresher insights as your situation changes."
+    },
+    {
+        "id": "what-data-needed",
+        "title": "What data MoodLens needs to function fully",
+        "category": "onboarding",
+        "tags": ["data", "requirements", "setup"],
+        "content": "MoodLens needs two inputs to give you the full experience: 1) Health data — sleep duration, daily steps, and active calories burned, imported from Apple Health. 2) A DASS-21 quiz response — the 3-minute mental health self-assessment. Without health data, charts and recovery scores won't render. Without the quiz, the Mental tab and most AI summaries can't be computed. With less than 14 days of health data, MoodLens uses rule-based scoring; after 14 days it switches to the personalized ML model."
+    },
+    {
+        "id": "navigate-tabs",
+        "title": "What's in each tab of the app",
+        "category": "navigation",
+        "tags": ["navigation", "tabs", "overview"],
+        "content": "Dashboard: overview cards and quick access to all features. Physical: 10 charts analyzing your sleep, steps, and energy — recovery scores, daily trends, pairwise correlations, and more. Mental: DASS-21 quiz, wellness gauge, recovery radar, burnout timeline, behavioral heatmap, mood forecast. Meditate: guided breathing exercises. Import Data: upload Apple Health export or set up the shortcut. Settings: account, shortcut setup, privacy controls."
+    }
+]

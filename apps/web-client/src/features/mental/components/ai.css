@@ -1,0 +1,946 @@
+/* ══════════════════════════════════════════════════════
+   AI Wellness Section
+══════════════════════════════════════════════════════ */
+
+.ai-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+}
+
+@media (max-width: 900px) {
+    .ai-section { 
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* Card wrapper */
+.ai-card {
+    background: 
+        radial-gradient(ellipse 140% 100% at 50% 0%, rgba(11,239,196,0.04), transparent 60%),
+        var(--color-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-card--mental {
+    background: 
+        radial-gradient(ellipse 140% 100% at 50% 0%, rgba(183,148,244,0.04), transparent 60%),
+        var(--color-raised);
+}
+
+.ai-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-3);
+}
+
+.ai-card__eyebrow {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.ai-card__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-top: 4px;
+}
+
+.ai-card__badge {
+    font-family: var(--font-data);
+    font-size: 10px;
+    color: var(--teal-glow);
+    letter-spacing: 0.1em;
+    padding: 4px 8px;
+    background: var(--teal-ghost);
+    border: 1px solid rgba(11,239,196,0.25);
+    border-radius: var(--radius-pill);
+}
+
+/* ── Wellness Gauge ─────────────────────────────────── */
+
+.wellness-gauge {
+    display: flex;
+    flex-direction: column;
+}
+
+.wellness-gauge__footer {
+    text-align: center;
+    margin-top: var(--space-2);
+}
+
+.wellness-gauge__category {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-2);
+    text-shadow: 0 0 20px currentColor;
+}
+
+.wellness-gauge__description {
+    font-size: var(--type-small);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 36ch;
+    margin: 0 auto;
+}
+
+/* ── Recovery Radar ─────────────────────────────────── */
+
+.recovery-radar {
+    display: flex;
+    flex-direction: column;
+}
+
+.recovery-radar__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+.recovery-radar__score {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.recovery-radar__num {
+    font-family: var(--font-data);
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    text-shadow: 0 0 16px currentColor;
+}
+
+.recovery-radar__max {
+    font-family: var(--font-data);
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.recovery-radar__category {
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding-left: var(--space-3);
+    border-left: 1px solid var(--color-border-subtle);
+}
+
+/* ── AI Insights ─────────────────────────────────────── */
+
+.ai-insights {
+    grid-column: 1 / -1;
+    background: 
+        radial-gradient(ellipse 100% 80% at 100% 0%, rgba(183,148,244,0.04), transparent 60%),
+        radial-gradient(ellipse 100% 80% at 0% 100%, rgba(11,239,196,0.04), transparent 60%),
+        var(--color-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: var(--space-5) var(--space-6);
+}
+
+.ai-insights__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.ai-insights__eyebrow {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.ai-insights__title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-top: 4px;
+}
+
+.ai-insights__meta {
+    font-family: var(--font-data);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+}
+
+.ai-insights__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.ai-insight {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-float);
+    border-left: 3px solid var(--teal-glow);
+    border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+    transition: transform var(--duration-fast), background var(--duration-fast);
+}
+
+.ai-insight:hover {
+    transform: translateX(2px);
+    background: rgba(255,255,255,0.04);
+}
+
+.ai-insight__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+    font-family: var(--font-data);
+}
+
+.ai-insight__body {
+    flex: 1;
+}
+
+.ai-insight__category {
+    display: inline-block;
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.ai-insight__text {
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-size: var(--type-small);
+}
+
+/* ── Empty States ───────────────────────────────────── */
+
+.ai-empty {
+    text-align: center;
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-raised);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-card);
+    margin-top: var(--space-6);
+}
+
+.ai-empty__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.ai-empty__text {
+    color: var(--text-secondary);
+    font-size: var(--type-small);
+    max-width: 40ch;
+    margin: 0 auto;
+}
+
+.wellness-gauge__chart,
+.recovery-radar__chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--space-3);
+}
+
+.wellness-gauge__chart svg,
+.recovery-radar__chart svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ══════════════════════════════════════════════════════
+   Burnout Timeline
+══════════════════════════════════════════════════════ */
+
+.burnout-timeline__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border-subtle);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.burnout-timeline__current {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.burnout-timeline__label {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.burnout-timeline__value {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+}
+
+.burnout-timeline__num {
+    font-family: var(--font-data);
+    font-size: 1.75rem;
+    font-weight: 300;
+    text-shadow: 0 0 12px currentColor;
+}
+
+.burnout-timeline__category {
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.burnout-timeline__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.burnout-zone {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid;
+}
+
+.burnout-zone--healthy {
+    color: #34D399;
+    background: rgba(52, 211, 153, 0.08);
+    border-color: rgba(52, 211, 153, 0.25);
+}
+
+.burnout-zone--mild {
+    color: #F5C842;
+    background: rgba(245, 200, 66, 0.08);
+    border-color: rgba(245, 200, 66, 0.25);
+}
+
+.burnout-zone--risk {
+    color: #FB923C;
+    background: rgba(251, 146, 60, 0.08);
+    border-color: rgba(251, 146, 60, 0.25);
+}
+
+.burnout-zone--severe {
+    color: #F87171;
+    background: rgba(248, 113, 113, 0.08);
+    border-color: rgba(248, 113, 113, 0.25);
+}
+
+/* ══════════════════════════════════════════════════════
+   Behavioral Heatmap
+══════════════════════════════════════════════════════ */
+
+.heatmap-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: var(--space-3);
+    padding: 4px;
+    background: var(--color-float);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    width: fit-content;
+}
+
+.heatmap-tab {
+    padding: 6px 14px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.heatmap-tab:hover {
+    color: var(--text-secondary);
+}
+
+.heatmap-tab.active {
+    background: var(--teal-ghost);
+    color: var(--teal-glow);
+    box-shadow: 0 0 12px rgba(11, 239, 196, 0.15);
+}
+
+.heatmap-description {
+    font-size: var(--type-small);
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+    font-style: italic;
+}
+
+.heatmap-legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-5);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+.heatmap-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+}
+
+.heatmap-legend__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+}
+
+/* ══════════════════════════════════════════════════════
+   AI Card variants for new sections
+══════════════════════════════════════════════════════ */
+
+.ai-card--full {
+    grid-column: 1 / -1;
+}
+
+.ai-card--burnout {
+    background: 
+        radial-gradient(ellipse 140% 100% at 0% 100%, rgba(251, 146, 60, 0.04), transparent 60%),
+        var(--color-raised);
+}
+
+.ai-card--heatmap {
+    background: 
+        radial-gradient(ellipse 140% 100% at 100% 0%, rgba(11, 239, 196, 0.04), transparent 60%),
+        var(--color-raised);
+}
+
+/* ══════════════════════════════════════════════════════
+   Mood Forecast
+══════════════════════════════════════════════════════ */
+
+.mood-forecast {
+    width: 100%;
+}
+
+/* ── Metric Tabs ───────────────────────────────────── */
+
+.forecast-tabs {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.forecast-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--color-float);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.forecast-tab:hover {
+    color: var(--text-secondary);
+    border-color: var(--color-border-hover);
+}
+
+.forecast-tab.active {
+    font-weight: 500;
+}
+
+.forecast-tab__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+}
+
+/* ── Prediction Cards ──────────────────────────────── */
+
+.forecast-predictions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+@media (max-width: 600px) {
+    .forecast-predictions {
+        grid-template-columns: 1fr;
+    }
+}
+
+.forecast-prediction {
+    background: var(--color-float);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-btn);
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.forecast-prediction__label {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.forecast-prediction__value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.forecast-prediction__num {
+    font-family: var(--font-data);
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1;
+    text-shadow: 0 0 12px currentColor;
+}
+
+.forecast-prediction__change {
+    font-family: var(--font-data);
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+}
+
+.forecast-prediction__change--up {
+    color: #FB923C;
+    background: rgba(251, 146, 60, 0.1);
+}
+
+.forecast-prediction__change--down {
+    color: #34D399;
+    background: rgba(52, 211, 153, 0.1);
+}
+
+.forecast-prediction--trend .forecast-prediction__value {
+    align-items: center;
+    gap: 10px;
+}
+
+.forecast-prediction__trend-icon {
+    font-family: var(--font-data);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-shadow: 0 0 12px currentColor;
+}
+
+.forecast-prediction__trend-label {
+    font-family: var(--font-data);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* ── AI Forecast Insight ───────────────────────────── */
+
+.forecast-insight {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-float);
+    border-left: 3px solid var(--teal-glow);
+    border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+}
+
+.forecast-insight__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-family: var(--font-data);
+    font-size: 16px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.forecast-insight__body {
+    flex: 1;
+}
+
+.forecast-insight__category {
+    display: inline-block;
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.forecast-insight__text {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-size: var(--type-small);
+}
+
+/* Forecast card variant */
+.ai-card--forecast {
+    background: 
+        radial-gradient(ellipse 140% 100% at 50% 0%, rgba(183, 148, 244, 0.05), transparent 60%),
+        var(--color-raised);
+}
+
+/* ══════════════════════════════════════════════════════
+   Phase 3 — ML UI additions
+   Append these to your existing ai.css file.
+══════════════════════════════════════════════════════ */
+
+/* ── ML / Fallback badges in the AI Insights header ───── */
+
+.ai-insights__meta-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.ai-insights__badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-data);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+}
+
+.ai-insights__badge--ml {
+    background: rgba(11, 239, 196, 0.15);
+    color: var(--teal-glow);
+    border: 1px solid rgba(11, 239, 196, 0.35);
+    box-shadow: 0 0 10px rgba(11, 239, 196, 0.2);
+}
+
+.ai-insights__badge--fallback {
+    background: rgba(245, 200, 66, 0.12);
+    color: #F5C842;
+    border: 1px solid rgba(245, 200, 66, 0.3);
+}
+
+/* ── Anomaly alert card ──────────────────────────────── */
+
+.ai-anomaly-card {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background:
+        radial-gradient(ellipse 100% 100% at 0% 50%, rgba(248, 113, 113, 0.12), transparent 60%),
+        var(--color-float);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-left: 3px solid #F87171;
+    border-radius: var(--radius-card);
+    animation: anomaly-pulse 3s ease-in-out infinite;
+}
+
+@keyframes anomaly-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.0); }
+    50%      { box-shadow: 0 0 16px 0 rgba(248, 113, 113, 0.25); }
+}
+
+.ai-anomaly-card__icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(248, 113, 113, 0.2);
+    color: #F87171;
+    font-family: var(--font-data);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.ai-anomaly-card__body {
+    flex: 1;
+}
+
+.ai-anomaly-card__title {
+    font-family: var(--font-display);
+    color: #F87171;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.ai-anomaly-card__text {
+    color: var(--text-secondary);
+    font-size: var(--type-small);
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.ai-anomaly-card__meta {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+/* ── Cluster archetype badge ─────────────────────────── */
+
+.ai-cluster-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background:
+        radial-gradient(ellipse 100% 80% at 100% 50%, rgba(183, 148, 244, 0.12), transparent 60%),
+        var(--color-float);
+    border: 1px solid rgba(183, 148, 244, 0.25);
+    border-radius: var(--radius-card);
+}
+
+.ai-cluster-card__label {
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.ai-cluster-card__archetype {
+    flex: 1;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--violet-glow);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.ai-cluster-card__match {
+    font-family: var(--font-data);
+    font-size: 10px;
+    padding: 4px 10px;
+    background: rgba(183, 148, 244, 0.15);
+    color: var(--violet-glow);
+    border: 1px solid rgba(183, 148, 244, 0.3);
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.08em;
+}
+
+/* ── Insights footer attribution ─────────────────────── */
+
+.ai-insights__footer {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px dashed var(--color-border-subtle);
+}
+
+.ai-insights__attribution {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* ══════════════════════════════════════════════════════
+   Mental tab optimization — APPEND to ai.css
+══════════════════════════════════════════════════════ */
+
+/* ── Card header: title + tooltip alignment ─────────── */
+
+.ai-card__title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ── AI Insights header tooltip row ─────────────────── */
+
+.ai-insights__title-row {
+    display: flex;
+    align-items: center;
+}
+
+/* ── Recovery Radar weak-axis callout ───────────────── */
+
+.recovery-radar__weak {
+    width: 100%;
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: var(--type-small);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    text-align: center;
+}
+
+.recovery-radar__weak strong {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.recovery-radar__weak-tag {
+    display: inline-block;
+    margin-right: 6px;
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    background: rgba(248, 113, 113, 0.12);
+    color: #F87171;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-radius: var(--radius-pill);
+    vertical-align: middle;
+}
+
+/* ── Burnout insight line ───────────────────────────── */
+
+.burnout-timeline__insight {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-float);
+    border-left: 3px solid var(--teal-glow);
+    border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+    font-size: var(--type-small);
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.burnout-timeline__insight strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* ── Mood Forecast — inverted-metric indicator ──────── */
+
+.forecast-tabs-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.forecast-inversion-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    background: var(--color-float);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    color: var(--text-muted);
+}
+
+.forecast-inversion-note--inverted {
+    background: rgba(248, 113, 113, 0.06);
+    border-color: rgba(248, 113, 113, 0.3);
+    color: #F87171;
+}
+
+.forecast-inversion-note--positive {
+    background: rgba(52, 211, 153, 0.06);
+    border-color: rgba(52, 211, 153, 0.3);
+    color: #34D399;
+}
+
+/* ── Mood Forecast — corrected direction colors ─────── */
+
+/* "Good direction" = green, "Bad direction" = orange, "Stable" = neutral */
+.forecast-prediction__change--good {
+    color: #34D399;
+    background: rgba(52, 211, 153, 0.12);
+}
+
+.forecast-prediction__change--bad {
+    color: #FB923C;
+    background: rgba(251, 146, 60, 0.12);
+}
+
+.forecast-prediction__change--stable {
+    color: var(--text-muted);
+    background: var(--color-float);
+}
+
+/* ── Mood Forecast — interpretation line ────────────── */
+
+.forecast-prediction__interp {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-top: 4px;
+    font-style: italic;
+}

@@ -1,0 +1,94 @@
+{
+  "wellness": {
+    "features": [
+      "sleep_mean",
+      "sleep_std",
+      "sleep_min",
+      "sleep_max",
+      "sleep_debt",
+      "sleep_trend",
+      "steps_mean",
+      "steps_std",
+      "steps_min",
+      "steps_max",
+      "steps_trend",
+      "days_under_5000_steps",
+      "days_over_10000_steps",
+      "energy_mean",
+      "energy_std",
+      "recovery_ratio",
+      "n_days_in_window",
+      "baseline_pos",
+      "baseline_neg",
+      "baseline_anxiety",
+      "days_since_baseline"
+    ],
+    "moodlens_features": [
+      "sleep_mean",
+      "sleep_std",
+      "sleep_min",
+      "sleep_max",
+      "sleep_debt",
+      "sleep_trend",
+      "steps_mean",
+      "steps_std",
+      "steps_min",
+      "steps_max",
+      "steps_trend",
+      "days_under_5000_steps",
+      "days_over_10000_steps",
+      "energy_mean",
+      "energy_std",
+      "recovery_ratio",
+      "n_days_in_window"
+    ],
+    "baseline_features": [
+      "baseline_pos",
+      "baseline_neg",
+      "baseline_anxiety"
+    ]
+  },
+  "anomaly": {
+    "features": [
+      "sleep_hours",
+      "steps",
+      "active_energy",
+      "sleep_roll7_mean",
+      "sleep_roll7_std",
+      "sleep_roll7_debt",
+      "steps_roll7_mean",
+      "steps_roll7_std",
+      "energy_roll7_mean"
+    ],
+    "contamination": 0.1
+  },
+  "cluster": {
+    "features": [
+      "sleep_mean",
+      "sleep_std",
+      "sleep_debt",
+      "steps_mean",
+      "baseline_pos",
+      "baseline_neg",
+      "baseline_anxiety"
+    ],
+    "archetypes": {
+      "0": "Sedentary / Good sleeper / High anxiety",
+      "1": "Sedentary / Poor sleeper / Low anxiety",
+      "2": "Active / Poor sleeper / Low anxiety"
+    }
+  },
+  "meta": {
+    "phase": "2.5-personalized",
+    "wellness_louo_mae": 9.239280982451005,
+    "wellness_louo_rmse": 11.040057171090865,
+    "wellness_louo_r2": 0.009798942281754042,
+    "wellness_warmstart_mae": 6.866139867089012,
+    "wellness_warmstart_r2": 0.3850243906863151,
+    "anomaly_users_modeled": 58,
+    "cluster_silhouette": 0.15363501538627344,
+    "cluster_k": 3,
+    "trained_on_rows": 176,
+    "trained_on_users": 39
+  }
+}

@@ -1,0 +1,47 @@
+# Render Blueprint (optional but recommended)
+# ============================================
+# Drop this at the REPO ROOT and Render will create both services automatically
+# when you click "New Blueprint Instance" in the Render dashboard.
+#
+# Skip this file if you'd rather click through the Render UI manually.
+
+services:
+  # ── Node.js API Server ──────────────────────────
+  - type: web
+    name: moodlens-api
+    runtime: node
+    plan: free
+    rootDir: services/api-server
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false      # set manually in dashboard (secret)
+      - key: JWT_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: GEMINI_CHAT_MODEL
+        value: gemini-2.5-flash
+      - key: INFERENCE_URL
+        sync: false      # will be the URL of moodlens-inference after first deploy
+      - key: ALLOWED_ORIGINS
+        sync: false      # comma-separated Vercel URLs
+
+  # ── Python Inference Service ────────────────────
+  - type: web
+    name: moodlens-inference
+    runtime: python
+    plan: free
+    rootDir: services/inference-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9

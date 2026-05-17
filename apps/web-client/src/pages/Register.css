@@ -1,0 +1,24 @@
+/* Register tweaks layered on top of Login.css base */
+
+.register__form-wrap {
+  max-width: 480px;
+  margin: var(--space-8) 0;
+}
+
+.register__section-optional {
+  margin-left: auto;
+  font-family: var(--font-data);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.register__suffix-unit {
+  font-family: var(--font-data);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 12px;
+}

@@ -1,0 +1,20 @@
+.pa-metric-toggle {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.pa-metric-toggle__btn {
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: all var(--duration-fast) var(--ease-out-smooth);
+}
+
+.pa-metric-toggle__btn:hover { color: var(--text-secondary); border-color: var(--color-float); }
+.pa-metric-toggle__btn.is-active { background: rgba(255,255,255,0.02); }

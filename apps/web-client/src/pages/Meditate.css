@@ -1,0 +1,308 @@
+/* ═══════════════════════════════════════════════════════
+   Meditate — box breathing session page
+   ═══════════════════════════════════════════════════════ */
+
+.meditate {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* changed from center to stretch for stable layout */
+    justify-content: center;
+    gap: var(--space-5);
+    min-height: calc(100vh - var(--navbar-height));
+    padding: var(--space-10) var(--space-6) var(--space-12);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* ── Ambient aurora ─────────────────────────────────────
+   Four layers, one per phase. Only the active one is
+   visible (opacity 1). Direction mirrors the active side:
+     Inhale  → glow bleeds in from the LEFT
+     Hold 1  → glow from TOP
+     Exhale  → glow from RIGHT
+     Hold 2  → glow from BOTTOM
+─────────────────────────────────────────────────────── */
+
+.med-aurora {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.med-slab {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.med-slab.is-on { opacity: 1; }
+
+.med-slab--inhale {
+    background: radial-gradient(
+        ellipse 50% 85% at -6% 50%,
+        rgba(11, 239, 196, 0.13), transparent 70%
+    );
+}
+.med-slab--hold1 {
+    background: radial-gradient(
+        ellipse 85% 50% at 50% -6%,
+        rgba(183, 148, 244, 0.13), transparent 70%
+    );
+}
+.med-slab--exhale {
+    background: radial-gradient(
+        ellipse 50% 85% at 106% 50%,
+        rgba(96, 165, 250, 0.13), transparent 70%
+    );
+}
+.med-slab--hold2 {
+    background: radial-gradient(
+        ellipse 85% 50% at 50% 106%,
+        rgba(245, 200, 66, 0.11), transparent 70%
+    );
+}
+
+/* ── Timer ──────────────────────────────────────────────
+   Subdued at rest. Slightly brighter when running —
+   still calm enough not to distract.
+─────────────────────────────────────────────────────── */
+
+.med-timer {
+    font-family: var(--font-data);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: var(--text-primary);
+    opacity: 0.35;
+    transition: opacity 0.6s ease;
+    user-select: none;
+}
+
+.meditate.is-running .med-timer {
+    opacity: 0.55;
+}
+
+.med-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.med-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8vh;
+    min-width: 440px; /* ensures stable width, adjust as needed */
+    box-sizing: border-box;
+}
+/* ── SVG canvas ─────────────────────────────────────────
+   Square, responsive. Sized via min() so it never
+   overflow on small screens or grow unwieldy on large.
+─────────────────────────────────────────────────────── */
+
+.med-canvas {
+    width:  min(78vmin, 460px);
+    height: min(78vmin, 460px);
+}
+
+.med-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible; /* allow glow to spill outside viewBox */
+}
+
+/* CSS transition for side stroke changes (phase switch) */
+.med-side {
+    transition: stroke 0.35s ease, stroke-width 0.35s ease;
+}
+
+/* ── Status area ────────────────────────────────────────
+   Fixed height so the layout doesn't jump when it
+   transitions from hint → count → done.
+─────────────────────────────────────────────────────── */
+
+.med-status {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.med-hint {
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+    animation: med-fadein 0.5s ease;
+}
+
+.med-count {
+    font-family: var(--font-data);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    animation: med-fadein 0.4s ease;
+}
+
+/* Completion state */
+.med-done {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    animation: med-fadeup 0.6s ease-out;
+}
+
+.med-done__glyph {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--teal-glow);
+    animation: med-starspin 0.7s var(--ease-spring);
+}
+
+@keyframes med-starspin {
+    from { transform: scale(0.2) rotate(-180deg); opacity: 0; }
+    to   { transform: scale(1)   rotate(0deg);    opacity: 1; }
+}
+
+.med-done__title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.med-done__sub {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ── Buttons ────────────────────────────────────────────*/
+
+.med-controls {
+    display: flex;
+    justify-content: center;
+}
+
+.med-btn {
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: transform 180ms var(--ease-spring),
+                box-shadow var(--duration-base) var(--ease-out-smooth),
+                background var(--duration-fast) var(--ease-out-smooth),
+                color var(--duration-fast) var(--ease-out-smooth),
+                border-color var(--duration-fast) var(--ease-out-smooth);
+}
+
+/* "Begin" / "Again" — large, inviting, Cormorant Garamond */
+.med-btn--start {
+    padding: 18px 72px;
+    background: var(--teal-core);
+    color: var(--color-void);
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    box-shadow: 0 12px 48px rgba(11, 239, 196, 0.28);
+}
+
+.med-btn--start:hover {
+    background: var(--teal-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 64px rgba(11, 239, 196, 0.5);
+}
+
+.med-btn--start:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 24px rgba(11, 239, 196, 0.2);
+}
+
+/* "End session" — quiet, doesn't demand attention */
+.med-btn--stop {
+    padding: 12px 32px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--text-muted);
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.med-btn--stop:hover {
+    border-color: var(--state-critical);
+    color: var(--state-critical);
+}
+
+/* ── Duration presets ────────────────────────────────── */
+
+.med-presets {
+    display: inline-flex;
+    gap: 6px;
+    padding: 4px;
+    background: var(--color-base);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    animation: med-fadein 0.4s ease;
+}
+
+.med-preset {
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    transition: color var(--duration-fast),
+                background var(--duration-fast),
+                box-shadow var(--duration-fast);
+}
+
+.med-preset:hover {
+    color: var(--text-primary);
+}
+
+.med-preset.is-active {
+    background: var(--violet-ghost);
+    color: var(--violet-glow);
+    box-shadow: inset 0 0 0 1px rgba(183, 148, 244, 0.3);
+}
+
+/* ── Keyframes ─────────────────────────────────────── */
+
+@keyframes med-fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes med-fadeup {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile ─────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+    .meditate { gap: var(--space-4); }
+    .med-btn--start { padding: 16px 52px; }
+    .med-presets { flex-wrap: wrap; justify-content: center; max-width: 300px; }
+    .med-preset { padding: 8px 12px; }
+}

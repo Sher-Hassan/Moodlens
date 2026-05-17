@@ -1,0 +1,174 @@
+.pa-page {
+    max-width: var(--layout-max);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-8) var(--space-24);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+/* ── Loading / error ─────────────────────────────────── */
+.pa-loading,
+.pa-error {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+}
+.pa-error__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+.pa-error__sub {
+    color: var(--text-muted);
+    font-size: var(--type-small);
+}
+
+/* ── Hero ────────────────────────────────────────────── */
+.pa-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-subtle);
+    flex-wrap: wrap;
+}
+
+.pa-hero__eyebrow {
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal-glow);
+    margin-bottom: var(--space-3);
+}
+
+.pa-hero__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.pa-hero__title-em {
+    color: var(--teal-glow);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.pa-hero__sub {
+    color: var(--text-secondary);
+    font-size: var(--type-body);
+    line-height: 1.6;
+    max-width: 56ch;
+}
+
+/* ── Stats strip ─────────────────────────────────────── */
+.pa-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-3);
+}
+
+@media (max-width: 960px) {
+    .pa-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+.pa-stat {
+    background: var(--color-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-input);
+    padding: var(--space-4);
+    border-top: 2px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pa-stat--steps     { border-top-color: var(--teal-glow); }
+.pa-stat--sleep     { border-top-color: var(--violet-glow); }
+.pa-stat--energy    { border-top-color: var(--amber-glow); }
+.pa-stat--excellent { border-top-color: var(--state-calm); }
+.pa-stat--good      { border-top-color: var(--teal-glow); }
+.pa-stat--moderate  { border-top-color: var(--amber-glow); }
+.pa-stat--fatigued  { border-top-color: var(--state-critical); }
+.pa-stat--muted     { border-top-color: var(--color-border); }
+
+.pa-stat__label {
+    font-family: var(--font-data);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.pa-stat__value {
+    font-family: var(--font-data);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    line-height: 1;
+}
+.pa-stat__sub {
+    font-size: var(--type-small);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* ── Chart grid ──────────────────────────────────────── */
+.pa-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+}
+
+@media (max-width: 960px) {
+    .pa-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Verdict ─────────────────────────────────────────── */
+.pa-verdict {
+    padding: var(--space-8);
+    border-radius: var(--radius-card);
+    background: var(--color-raised);
+    border: 1px solid var(--color-border);
+    border-left-width: 4px;
+    text-align: left;
+}
+
+.pa-verdict--excellent { border-left-color: var(--state-calm); }
+.pa-verdict--good      { border-left-color: var(--teal-glow); }
+.pa-verdict--moderate  { border-left-color: var(--amber-glow); }
+.pa-verdict--fatigued  { border-left-color: var(--state-critical); }
+
+.pa-verdict__eyebrow {
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+}
+
+.pa-verdict__title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.pa-verdict__sub {
+    color: var(--text-secondary);
+    font-size: var(--type-body-lg);
+    line-height: 1.6;
+    max-width: 60ch;
+}

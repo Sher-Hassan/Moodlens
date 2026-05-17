@@ -1,0 +1,82 @@
+[
+    {
+        "id": "sleep-hygiene-basics",
+        "title": "Sleep hygiene basics",
+        "topic": "sleep",
+        "source": "NHS",
+        "source_url": "https://www.nhs.uk/live-well/sleep-and-tiredness/how-to-get-to-sleep/",
+        "content": "Good sleep hygiene helps most adults fall asleep faster and stay asleep longer. Core practices: keep a consistent bedtime and wake time, including on weekends; make your bedroom dark, quiet, and cool (around 18°C / 65°F); avoid caffeine after early afternoon; avoid heavy meals and alcohol close to bedtime; reduce screen time and bright light in the hour before sleep; if you can't sleep after 20 minutes, get up and do something relaxing in low light until you feel sleepy. These habits are evidence-based and recommended by sleep specialists worldwide."
+    },
+    {
+        "id": "anxiety-vs-stress",
+        "title": "The difference between anxiety and stress",
+        "topic": "anxiety",
+        "source": "American Psychological Association",
+        "source_url": "https://www.apa.org/topics/stress/anxiety-difference",
+        "content": "Stress is your response to an external threat or demand — work deadlines, conflict, lack of sleep. Anxiety persists even when no obvious stressor is present and tends to involve worry about the future. Both are normal in moderation. They become concerning when they're persistent (most days for weeks), intense (interfering with daily function), or disproportionate to the situation. Self-help techniques like regular sleep, exercise, mindfulness, and limiting caffeine help both. Persistent anxiety that affects daily life warrants speaking with a mental health professional."
+    },
+    {
+        "id": "grounding-technique-54321",
+        "title": "The 5-4-3-2-1 grounding technique for anxiety",
+        "topic": "anxiety",
+        "source": "University of Rochester Medical Center",
+        "source_url": "https://www.urmc.rochester.edu/behavioral-health-partners/bhp-blog/april-2018/5-4-3-2-1-coping-technique-for-anxiety.aspx",
+        "content": "The 5-4-3-2-1 technique is a simple grounding exercise used to interrupt acute anxiety or panic. It works by directing attention to your senses, pulling your mind out of anxious thought loops. Name: 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, 1 thing you can taste. Take it slowly. This is most useful in moments of rising anxiety — it doesn't treat anxiety long-term, but it can shorten an acute episode."
+    },
+    {
+        "id": "physical-activity-mental-health",
+        "title": "How physical activity affects mental health",
+        "topic": "activity",
+        "source": "CDC",
+        "source_url": "https://www.cdc.gov/physicalactivity/basics/pa-health/index.htm",
+        "content": "Regular physical activity has well-documented benefits for mental health: reduced symptoms of depression and anxiety, better sleep quality, improved mood, and better stress regulation. The CDC recommends adults get at least 150 minutes per week of moderate-intensity activity (like brisk walking), which works out to roughly 30 minutes on 5 days. Even shorter sessions of 10 minutes count and provide benefit. Movement matters more than intensity — consistency over peaks."
+    },
+    {
+        "id": "sleep-and-mood",
+        "title": "How sleep affects mood and mental health",
+        "topic": "sleep",
+        "source": "Harvard Health",
+        "source_url": "https://www.health.harvard.edu/newsletter_article/sleep-and-mental-health",
+        "content": "Sleep and mental health are deeply connected. Poor sleep amplifies anxiety, depression, and irritability the next day. Conversely, anxiety and depression often disrupt sleep, creating a cycle. Most adults need 7-9 hours per night for emotional regulation and cognitive function. Even one night of significantly short sleep (under 5-6 hours) can measurably affect mood and reaction time the following day. If sleep difficulties persist for more than two weeks, speaking with a clinician is a reasonable next step."
+    },
+    {
+        "id": "cbt-thought-reframe",
+        "title": "Cognitive reframing — challenging anxious thoughts",
+        "topic": "anxiety",
+        "source": "NHS Inform",
+        "source_url": "https://www.nhsinform.scot/healthy-living/mental-wellbeing/anxiety-fear-and-panic/",
+        "content": "Cognitive reframing is a core technique from CBT (Cognitive Behavioural Therapy) for managing anxious or negative thoughts. When you catch an anxious thought, ask: 1) What's the evidence FOR this thought? 2) What's the evidence AGAINST it? 3) Is there another way to view this situation? 4) What would I tell a friend in the same situation? This process doesn't deny the worry — it puts it in perspective. Practicing this regularly can reduce the grip of anxious thinking over weeks. It's not a quick fix but is widely supported by research."
+    },
+    {
+        "id": "when-to-seek-help",
+        "title": "When to seek professional mental health support",
+        "topic": "professional-help",
+        "source": "Mind UK",
+        "source_url": "https://www.mind.org.uk/information-support/guides-to-support-and-services/seeking-help-for-a-mental-health-problem/",
+        "content": "Consider reaching out to a mental health professional if any of these apply: distressing feelings have lasted more than two weeks; symptoms interfere with daily activities (work, relationships, self-care); you're having thoughts of self-harm or suicide; you're using substances to cope; sleep is severely disrupted; or things you used to enjoy no longer bring you any pleasure. Reaching out is a sign of strength, not weakness. Start with your GP or doctor, or look up local mental health services. Many countries also have free crisis helplines available 24/7."
+    },
+    {
+        "id": "stress-management-basics",
+        "title": "Evidence-based stress management techniques",
+        "topic": "stress",
+        "source": "NHS",
+        "source_url": "https://www.nhs.uk/mental-health/self-help/tips-and-support/cope-with-stress/",
+        "content": "Stress is part of life but chronic stress is harmful. Effective evidence-based ways to manage it include: regular physical activity (a strong stress reducer); maintaining social connections; getting consistent sleep; practicing mindfulness or breathing exercises for 5-10 minutes a day; setting realistic to-do lists; taking actual breaks during the day; and limiting alcohol and caffeine. Identifying what specifically triggers your stress (work, relationships, financial worry) helps you target the source. If stress is overwhelming, talking to a professional is appropriate."
+    },
+    {
+        "id": "box-breathing-technique",
+        "title": "Box breathing for calming the nervous system",
+        "topic": "stress",
+        "source": "Cleveland Clinic",
+        "source_url": "https://my.clevelandclinic.org/health/articles/box-breathing-benefits",
+        "content": "Box breathing is a simple breath-control technique that activates the parasympathetic nervous system and reduces acute stress and anxiety. It's used by athletes, military personnel, and meditation teachers. How to do it: 1) Inhale through your nose for 4 seconds. 2) Hold your breath for 4 seconds. 3) Exhale through your mouth for 4 seconds. 4) Hold empty for 4 seconds. 5) Repeat for 4-8 cycles. Most people feel calmer within a minute. MoodLens includes a guided box-breathing exercise on the Meditate tab."
+    },
+    {
+        "id": "crisis-resources",
+        "title": "Crisis resources — for moments of acute distress",
+        "topic": "crisis",
+        "source": "International Association for Suicide Prevention",
+        "source_url": "https://www.iasp.info/resources/Crisis_Centres/",
+        "content": "If you are experiencing a mental health crisis or having thoughts of self-harm, please reach out for support right now. In the United States: call or text 988 (Suicide and Crisis Lifeline). In the United Kingdom: call 116 123 (Samaritans), free, 24/7. In Australia: call 13 11 14 (Lifeline). In Canada: call or text 988. In other countries: visit findahelpline.com to find a local helpline. You can also go to your nearest emergency department or call your local emergency number. You don't have to face this alone — people are trained and ready to help."
+    }
+]

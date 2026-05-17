@@ -1,0 +1,258 @@
+.shortcut-setup-loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shortcut-setup {
+    min-height: calc(100vh - var(--navbar-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(183,148,244,0.08), transparent 70%);
+}
+
+.shortcut-setup__container {
+    max-width: 560px;
+    width: 100%;
+    background: var(--color-raised);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--violet-core);
+    border-radius: var(--radius-card);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-card);
+}
+
+.shortcut-setup__header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.shortcut-setup__icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--space-3);
+    filter: drop-shadow(0 4px 20px rgba(183,148,244,0.4));
+}
+
+.shortcut-setup__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.shortcut-setup__title-em {
+    color: var(--violet-glow);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.shortcut-setup__sub {
+    font-size: var(--type-body);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Steps */
+.shortcut-setup__step {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* Add after .shortcut-setup__step */
+
+.shortcut-setup__field {
+    margin-bottom: var(--space-4);
+}
+
+.shortcut-setup__field:last-of-type {
+    margin-bottom: 0;
+}
+
+.shortcut-setup__label {
+    display: block;
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.shortcut-setup__step:last-of-type {
+    border-bottom: none;
+}
+
+.shortcut-setup__step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.shortcut-setup__step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--violet-ghost);
+    color: var(--violet-glow);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-data);
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.shortcut-setup__step-title {
+    font-family: var(--font-ui);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Token display */
+.shortcut-setup__token-box {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--color-base);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-input);
+    padding: var(--space-3) var(--space-4);
+}
+
+.shortcut-setup__token {
+    flex: 1;
+    font-family: var(--font-data);
+    font-size: 13px;
+    color: var(--text-primary);
+    word-break: break-all;
+    line-height: 1.5;
+}
+
+.shortcut-setup__copy-btn {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--color-raised);
+    border: 1px solid var(--color-border);
+    color: var(--text-secondary);
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: all var(--duration-fast);
+}
+
+.shortcut-setup__copy-btn:hover {
+    border-color: var(--violet-core);
+    color: var(--violet-glow);
+}
+
+/* Install button */
+.shortcut-setup__install-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-input);
+    background: var(--violet-core);
+    color: #fff;
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(144,97,224,0.3);
+    transition: transform 180ms var(--ease-spring), 
+                background var(--duration-fast),
+                box-shadow var(--duration-base);
+}
+
+.shortcut-setup__install-btn:hover {
+    background: var(--violet-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(144,97,224,0.45);
+}
+
+.shortcut-setup__install-icon {
+    font-size: 1.25rem;
+}
+
+/* Note text */
+.shortcut-setup__note {
+    font-size: var(--type-small);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: var(--space-3);
+}
+
+/* Details/explainer */
+.shortcut-setup__details {
+    margin-top: var(--space-6);
+    padding: var(--space-4);
+    background: var(--color-base);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-input);
+}
+
+.shortcut-setup__details summary {
+    font-family: var(--font-ui);
+    font-size: var(--type-small);
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+}
+
+.shortcut-setup__details summary:hover {
+    color: var(--text-primary);
+}
+
+.shortcut-setup__explainer {
+    margin-top: var(--space-3);
+    padding-left: var(--space-5);
+    font-size: var(--type-small);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.shortcut-setup__explainer li {
+    margin-bottom: 6px;
+}
+
+/* Back button */
+.shortcut-setup__back {
+    display: block;
+    margin: var(--space-6) auto 0;
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 8px 4px;
+    transition: color var(--duration-fast);
+}
+
+.shortcut-setup__back:hover {
+    color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+    .shortcut-setup__container {
+        padding: var(--space-6);
+    }
+
+    .shortcut-setup__token {
+        font-size: 11px;
+    }
+}

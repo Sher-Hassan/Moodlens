@@ -1,0 +1,49 @@
+.pa-guide {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    background: var(--color-base);
+    padding: var(--space-6);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border-subtle);
+}
+
+.pa-guide__item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.pa-guide__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-raised);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    border: 1px solid var(--color-border);
+}
+
+.pa-guide__icon--steps { color: var(--teal-glow); box-shadow: 0 0 15px rgba(11, 239, 196, 0.1); }
+.pa-guide__icon--sleep { color: var(--violet-glow); box-shadow: 0 0 15px rgba(183, 148, 244, 0.1); }
+.pa-guide__icon--energy { color: var(--amber-glow); box-shadow: 0 0 15px rgba(245, 200, 66, 0.1); }
+
+.pa-guide__text h4 {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.pa-guide__text p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .pa-guide { grid-template-columns: 1fr; }
+}
