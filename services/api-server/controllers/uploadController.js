@@ -5,6 +5,8 @@ import os from 'os'; // Use OS temp folder, guaranteed to exist on Render, Linux
 import AdmZip from 'adm-zip';
 import HealthRecord from '../models/HealthRecord.js';
 
+const mlEngineUrl = process.env.ML_ENGINE_URL || 'http://localhost:8000';
+
 export const handleUpload = async (req, res) => {
     const { userId } = req.body;
 
@@ -52,9 +54,9 @@ export const handleUpload = async (req, res) => {
         }
 
         // 3. Handoff to the Python Flask microservice using the secure temp path
-        const pythonResponse = await axios.post('http://localhost:8000/process-xml', {
-            filePath: tempXmlPath
-        });
+        const pythonResponse = await axios.post(`${mlEngineUrl}/process-xml`, {
+    filePath: tempXmlPath
+});
 
         console.log('Python Service Processing Response received.');
 
