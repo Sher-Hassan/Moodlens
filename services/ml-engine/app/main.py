@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import os
 import numpy as np
+import tempfile
 from preprocessing.cleaner import parse_apple_health_xml
 
 app = Flask(__name__)
@@ -11,15 +12,26 @@ def test():
 
 @app.route('/process-xml', methods=['POST'])
 def process_xml():
-    data = request.get_json()
-    file_path = data.get('filePath')
+    # Capture the stream directly from the incoming multipart network request
+    if 'file' not in request.files:
+        return jsonify({"error": "No file payload chunk found in request"}), 400
+        
+    uploaded_file = request.files['file']
+    if uploaded_file.filename == '':
+        return jsonify({"error": "Empty filename passed"}), 400
 
-    if not file_path or not os.path.exists(file_path):
-        return jsonify({"error": f"File not found at {file_path}"}), 400
+    # Write the stream to a tempfile isolated safely INSIDE this specific container
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".xml") as temp_file:
+        uploaded_file.save(temp_file.name)
+        local_temp_path = temp_file.name
 
     try:
-        # Get the list of records from your cleaner.py
-        cleaned_records = parse_apple_health_xml(file_path)
+        # Hand off the local container path directly to your clean engine
+        cleaned_records = parse_apple_health_xml(local_temp_path)
+        
+        # Wipe the file inside this container immediately to free up memory footprint
+        if os.path.exists(local_temp_path):
+            os.remove(local_temp_path)
         
         # Format the data for JSON (convert Timestamps to strings)
         for record in cleaned_records:
@@ -32,16 +44,14 @@ def process_xml():
             if isinstance(record['value'], float) and (np.isnan(record['value']) or np.isinf(record['value'])):
                 record['value'] = 0
 
-        # Return the RAW LIST so .map() works in Node.js
         return jsonify(cleaned_records), 200
 
     except Exception as e:
-        # If this happens, Node.js will catch the 500 error
+        # Emergency exception cleanup loop to catch runtime file leakage
+        if os.path.exists(local_temp_path):
+            os.remove(local_temp_path)
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    # Capture dynamic port assigned by Render, falling back to 8000 for local safety
     port = int(os.environ.get("PORT", 8000))
-    
-    # CRITICAL: host="0.0.0.0" allows the API server container to route network calls here
     app.run(host="0.0.0.0", port=port, debug=False)
