@@ -40,4 +40,8 @@ def process_xml():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    # Capture dynamic port assigned by Render, falling back to 8000 for local safety
+    port = int(os.environ.get("PORT", 8000))
+    
+    # CRITICAL: host="0.0.0.0" allows the API server container to route network calls here
+    app.run(host="0.0.0.0", port=port, debug=False)
