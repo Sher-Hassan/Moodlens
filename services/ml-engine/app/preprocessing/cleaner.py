@@ -2,63 +2,62 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import os
 
+TARGET_METRICS = {
+    'HKCategoryTypeIdentifierSleepAnalysis',
+    'HKQuantityTypeIdentifierStepCount',
+    'HKQuantityTypeIdentifierActiveEnergyBurned',
+}
+
 def parse_apple_health_xml(file_path):
     if not os.path.exists(file_path):
         return []
 
+    records = []
+    
     try:
-        tree = ET.parse(file_path)
-        root = tree.getroot()
-        records = []
+        # Stream-parse: handle each <Record> as it appears, then discard it
+        context = ET.iterparse(file_path, events=('end',))
         
-        target_metrics = [
-            'HKCategoryTypeIdentifierSleepAnalysis',
-            'HKQuantityTypeIdentifierStepCount',
-            'HKQuantityTypeIdentifierActiveEnergyBurned'
-        ]
-        
-        for record in root.findall('Record'):
-            attr = record.attrib
-            r_type = attr.get('type')
+        for event, elem in context:
+            if elem.tag != 'Record':
+                continue
             
-            if r_type in target_metrics:
-                # Get raw dates
-                s_date = pd.to_datetime(attr.get('startDate'))
-                e_date = pd.to_datetime(attr.get('endDate'))
+            r_type = elem.get('type')
+            if r_type not in TARGET_METRICS:
+                elem.clear()  # CRITICAL: free memory
+                continue
+            
+            try:
+                s_date = pd.to_datetime(elem.get('startDate'))
+                e_date = pd.to_datetime(elem.get('endDate'))
                 
-                # Default values
-                val = attr.get('value')
-                unit = attr.get('unit', '')
-
-                # LOGIC CHANGE: If it's Sleep, calculate duration in decimal hours
+                val = elem.get('value')
+                unit = elem.get('unit', '')
+                
                 if r_type == 'HKCategoryTypeIdentifierSleepAnalysis':
-                    duration = (e_date - s_date).total_seconds() / 3600 # Seconds to Hours
-                    val = round(duration, 2) # e.g., 7.50
+                    duration = (e_date - s_date).total_seconds() / 3600
+                    val = round(duration, 2)
                     unit = 'Hours'
                 else:
-                    # For Steps and Calories, just convert the existing value to float
                     try:
                         val = float(val)
                     except:
                         val = 0.0
-
+                
                 records.append({
                     'type': r_type,
                     'value': val,
                     'unit': unit,
-                    'startDate': s_date,
-                    'endDate': e_date
+                    'startDate': s_date.strftime('%Y-%m-%dT%H:%M:%S.000Z'),
+                    'endDate':   e_date.strftime('%Y-%m-%dT%H:%M:%S.000Z'),
                 })
+            except Exception:
+                pass  # skip malformed records
+            finally:
+                elem.clear()  # CRITICAL: free memory after processing
         
-        df = pd.DataFrame(records)
-        if df.empty: return []
-
-        # Convert timestamps to ISO strings for JSON safety
-        df['startDate'] = df['startDate'].dt.strftime('%Y-%m-%dT%H:%M:%S.000Z')
-        df['endDate'] = df['endDate'].dt.strftime('%Y-%m-%dT%H:%M:%S.000Z')
-        
-        return df.to_dict(orient='records')
-
+        return records
+    
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error parsing XML: {e}", flush=True)
         return []
